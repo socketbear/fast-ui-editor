@@ -6,8 +6,13 @@
     "dev": "nuxi dev",
     "start": "nuxi preview"
   },
+  "dependencies": {
+    "pinia": "^2.0.13"
+  },
   "devDependencies": {
     "nuxt": "npm:nuxt3@latest",
-    "nuxt-windicss": "^2.3.1"
+    "nuxt-windicss": "^2.3.1",
+    "@pinia/nuxt": "^0.1.8",
+    "@vueuse/nuxt": "^8.3.1"
   }
 }

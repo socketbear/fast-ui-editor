@@ -1,16 +1,31 @@
 <script setup>
-const version = 2 + 1;
+useHead({
+  title: 'Fast UI Editor',
+  link: [
+    {
+      rel: 'icon', type: 'image/png', href: '/nuxt.png',
+    },
+  ],
+})
 </script>
 
 <template>
-  <div class="hello">Hello Nuxt {{ version }}!</div>
-  <div class="font-bold">GOOD!</div>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 
-<style scoped>
-.hello {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 3rem;
-  padding: 10rem;
+<style>
+html,
+body,
+#__nuxt {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+html.dark {
+  background: #222;
+  color: white;
 }
 </style>
