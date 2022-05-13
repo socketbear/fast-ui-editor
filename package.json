@@ -7,12 +7,17 @@
     "start": "nuxi preview"
   },
   "dependencies": {
-    "pinia": "^2.0.13"
+    "codemirror": "^5.65.3",
+    "dayjs": "^1.11.2",
+    "js-beautify": "^1.14.3",
+    "pinia": "^2.0.13",
+    "vue-codemirror": "^5.0.0-beta.1",
+    "vuedraggable": "^2.24.3"
   },
   "devDependencies": {
-    "nuxt": "npm:nuxt3@latest",
-    "nuxt-windicss": "^2.3.1",
     "@pinia/nuxt": "^0.1.8",
-    "@vueuse/nuxt": "^8.3.1"
+    "@vueuse/nuxt": "^8.3.1",
+    "nuxt": "npm:nuxt3@latest",
+    "nuxt-windicss": "^2.3.1"
   }
 }
