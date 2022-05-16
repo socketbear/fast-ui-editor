@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const { $t } = useNuxtApp();
-const testMsg = $t().test;
+const { $consts } = useNuxtApp();
+const testMsg = $consts().test;
 </script>
 
 <template>

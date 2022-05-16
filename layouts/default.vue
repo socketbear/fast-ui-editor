@@ -1,9 +1,9 @@
 <template>
-  <main class="py-20 px-10 text-center">
-    <slot />
-    <!-- <Footer /> -->
-    <div class="mt-5 mx-auto text-center opacity-25 text-sm">
-      [Default Layout]
+  <main class="flex flex-col h-screen">
+    <layout-header class="flex-none h-12" />
+    <div class="flex-1 min-h-0">
+      <slot />
     </div>
+    <layout-footer class="flex-none h-12" />
   </main>
 </template>

@@ -1,7 +1,7 @@
 export default defineNuxtPlugin(() => {
   return {
     provide: {
-      t: () => ({
+      consts: () => ({
         test: {
           tFlag: true,
           tText: "Global const in Nuxt.",
