@@ -2,15 +2,8 @@
   <div>
     <div class="example">
       <client-only>
-        <vue-codemirror
-          v-model="code"
-          class="codemirror"
-          :options="cmOption"
-          @cursorActivity="onCmCursorActivity"
-          @ready="onCmReady"
-          @focus="onCmFocus"
-          @blur="onCmBlur"
-        />
+        <vue-codemirror v-model="code" class="codemirror" :extensions="extensions" @ready="onCmReady"
+          @change="onCmChange" @focus="onCmFocus" @blur="onCmBlur" />
       </client-only>
       <pre class="pre">{{ code }}</pre>
     </div>
@@ -18,41 +11,39 @@
 </template>
 
 <script>
+import { html } from '@codemirror/lang-html'
+import dedent from 'dedent'
+
 export default {
   name: "SandboxCode",
   setup() {
-    const cmOption = {
-      tabSize: 2,
-      styleActiveLine: true,
-      lineNumbers: true,
-      line: true,
-      mode: "text/x-vue",
-    };
+    let code = ref(dedent`
+          <template>
+            <main>
+              <h1>Hello World!</h1>
+              <p>{{ message }}</p>
+            </main>
+          </template>
+        `);
+    const extensions = [html()]
 
-    let code = `<template>
-  <main>
-    <h1>Hello World!</h1>
-    <p>{{ message }}</p>
-  </main>
-</template>`;
-
-    const onCmCursorActivity = (codemirror) => {
-      console.debug("onCmCursorActivity", codemirror);
+    const onCmChange = (codemirror) => {
+      console.log("onCmChange", codemirror);
     };
     const onCmReady = (codemirror) => {
-      console.debug("onCmReady", codemirror);
+      console.log("onCmReady", codemirror);
     };
     const onCmFocus = (codemirror) => {
-      console.debug("onCmFocus", codemirror);
+      console.log("onCmFocus", codemirror);
     };
     const onCmBlur = (codemirror) => {
-      console.debug("onCmBlur", codemirror);
+      console.log("onCmBlur", codemirror);
     };
 
     return {
-      cmOption,
       code,
-      onCmCursorActivity,
+      extensions,
+      onCmChange,
       onCmReady,
       onCmFocus,
       onCmBlur,
@@ -66,6 +57,7 @@ export default {
   display: flex;
   height: 100%;
 }
+
 .example .codemirror,
 .pre {
   width: 50%;
@@ -73,6 +65,7 @@ export default {
   margin: 0;
   overflow: auto;
 }
+
 .example .pre {
   display: block;
   padding: 1rem;

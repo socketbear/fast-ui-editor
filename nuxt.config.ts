@@ -10,7 +10,6 @@ export default defineNuxtConfig({
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/nuxt.png" }],
   },
-  css: ["codemirror/lib/codemirror.css", "codemirror/theme/base16-dark.css"],
 
   modules: ["nuxt-windicss", "@vueuse/nuxt", "@pinia/nuxt"],
 });

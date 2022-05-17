@@ -1,5 +1,12 @@
-<script setup lang="ts">
-const router = useRouter()
+<script lang="ts">
+export default {
+  setup() {
+    const router = useRouter()
+    return { router }
+  }
+}
+
+
 </script>
 
 <template>
