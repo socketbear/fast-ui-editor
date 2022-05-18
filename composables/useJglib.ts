@@ -1,15 +1,9 @@
 import dayjs from "dayjs";
-// const beautifyJs = require("js-beautify");
-// const beautifyHtml = require("js-beautify").html;
 import beautifyJs from "js-beautify";
 const beautifyHtml = beautifyJs.html;
 
 export const useJglib = () => {
   return {
-    callSandbox() {
-      console.log("beautifyJs :>> ", beautifyJs);
-      console.log("beautifyJs.html :>> ", beautifyJs.html);
-    },
     getUniqueKey() {
       const prefix = dayjs().format("YYMMDDHHmmssSSS");
       const randomStr = Math.random().toString(36).substring(2, 9);
