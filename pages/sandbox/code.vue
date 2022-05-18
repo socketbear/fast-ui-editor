@@ -2,8 +2,15 @@
   <div>
     <div class="example">
       <client-only>
-        <vue-codemirror v-model="code" class="codemirror" :extensions="extensions" @ready="onCmReady"
-          @change="onCmChange" @focus="onCmFocus" @blur="onCmBlur" />
+        <vue-codemirror
+          v-model="code"
+          class="codemirror"
+          :extensions="extensions"
+          @ready="onCmReady"
+          @change="onCmChange"
+          @focus="onCmFocus"
+          @blur="onCmBlur"
+        />
       </client-only>
       <pre class="pre">{{ code }}</pre>
     </div>
@@ -11,8 +18,10 @@
 </template>
 
 <script>
-import { html } from '@codemirror/lang-html'
-import dedent from 'dedent'
+import { html } from "@codemirror/lang-html";
+import dedent from "dedent";
+
+const jglib = useJglib();
 
 export default {
   name: "SandboxCode",
@@ -25,7 +34,7 @@ export default {
             </main>
           </template>
         `);
-    const extensions = [html()]
+    const extensions = [html()];
 
     const onCmChange = (codemirror) => {
       console.log("onCmChange", codemirror);
@@ -39,6 +48,11 @@ export default {
     const onCmBlur = (codemirror) => {
       console.log("onCmBlur", codemirror);
     };
+
+    console.log(
+      "html :>>>",
+      jglib.prettyHtml("<div><p>dd</p><div>test</div></div>")
+    );
 
     return {
       code,
