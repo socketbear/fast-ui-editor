@@ -13,6 +13,7 @@
     "dayjs": "^1.11.2",
     "dedent": "^0.7.0",
     "js-beautify": "^1.14.3",
+    "maz-ui": "^3.0.0",
     "pinia": "^2.0.13",
     "vue-codemirror": "^5.0.1",
     "vuedraggable": "^2.24.3"

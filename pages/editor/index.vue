@@ -3,11 +3,11 @@
     <!-- 좌측 영역 -->
     <div class="flex-1 flex flex-col h-full">
       <div class="flex-none flex w-full p-4">
-        <div class="w-1/2 text-left">
-          <button type="button">추가</button>
-          <button type="button">복사</button>
-          <button type="button">삭제</button>
-          <button type="button">DATA 복사</button>
+        <div class="w-1/2 text-left divide-x">
+          <MazBtn class="mr-2" size="mini">추가</MazBtn>
+          <MazBtn class="mr-2" size="mini">복사</MazBtn>
+          <MazBtn class="mr-2" size="mini">삭제</MazBtn>
+          <MazBtn class="mr-2" size="mini">DATA 복사</MazBtn>
         </div>
         <div class="flex justify-end w-1/2">
           <div class="flex mr-2">
