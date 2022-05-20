@@ -10,18 +10,15 @@
           <MazBtn class="mr-2" size="mini">DATA 복사</MazBtn>
         </div>
         <div class="flex justify-end w-1/2">
-          <div class="flex mr-2">
-            <input id="layout-priview" type="checkbox" value="priview" />
-            <label for="layout-priview">Priview</label>
-          </div>
-          <div class="flex mr-2">
-            <input id="layout-id-checkbox" type="checkbox" value="id" />
-            <label for="layout-id-checkbox">ID 보이기</label>
-          </div>
-          <div class="flex">
-            <input id="layout-editor" type="checkbox" value="editor" />
-            <label for="layout-editor">Editor</label>
-          </div>
+          <MazCheckbox class="mx-2" v-model="pageEnv.isPreview">
+            Priview
+          </MazCheckbox>
+          <MazCheckbox class="mx-2" v-model="pageEnv.isShow">
+            ID 보이기
+          </MazCheckbox>
+          <MazCheckbox class="mx-2" v-model="pageEnv.isEditor">
+            Editor
+          </MazCheckbox>
         </div>
       </div>
       <div class="flex-1 min-h-0 overflow-y-auto p-4">
@@ -35,9 +32,9 @@
           <client-only>
             <div class="flex items-center justify-between my-4">
               <p class="text-xl">HTML Code</p>
-              <button type="button">CODE 새로고침</button>
+              <MazBtn class="ml-2" size="mini">CODE 새로고침</MazBtn>
             </div>
-            <vue-codemirror class="w-full codemirror_stype" />
+            <!-- <vue-codemirror class="w-full codemirror_stype" /> -->
           </client-only>
         </div>
       </div>
@@ -56,7 +53,15 @@
 <script lang="ts">
 export default {
   name: "EditorMain",
-  setup() {},
+  setup() {
+    const pageEnv = reactive({
+      isPreview: false,
+      isShow: false,
+      isEditor: false,
+    });
+
+    return { pageEnv };
+  },
 };
 </script>
 
