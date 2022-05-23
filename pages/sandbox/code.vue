@@ -72,6 +72,10 @@ export default {
   height: 100%;
 }
 
+.example .codemirror {
+  display: initial;
+}
+
 .example .codemirror,
 .pre {
   width: 50%;
