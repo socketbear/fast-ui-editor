@@ -10,21 +10,45 @@
           <MazBtn class="mr-2" size="mini">DATA 복사</MazBtn>
         </div>
         <div class="flex justify-end w-1/2">
-          <MazCheckbox class="mx-2" v-model="pageEnv.isPreview">
-            Priview
-          </MazCheckbox>
-          <MazCheckbox class="mx-2" v-model="pageEnv.isShow">
-            ID 보이기
-          </MazCheckbox>
-          <MazCheckbox class="mx-2" v-model="pageEnv.isEditor">
-            Editor
-          </MazCheckbox>
+          <div class="flex mr-2 items-center">
+            <input
+              id="layout-priview"
+              v-model="pageOptions"
+              type="checkbox"
+              value="preview"
+            />
+            <label for="layout-priview">Priview</label>
+          </div>
+          <div class="flex mr-2 items-center">
+            <input
+              id="layout-id-checkbox"
+              v-model="pageOptions"
+              type="checkbox"
+              value="id"
+              :disabled="showPriview"
+            />
+            <label
+              for="layout-id-checkbox"
+              :class="{ label_disabled: showPriview }"
+              >ID 보이기</label
+            >
+          </div>
+          <div class="flex items-center">
+            <input
+              id="layout-editor"
+              v-model="pageOptions"
+              type="checkbox"
+              value="editor"
+            />
+            <label for="layout-editor">Editor</label>
+          </div>
         </div>
       </div>
       <div class="flex-1 min-h-0 overflow-y-auto p-4">
         <!-- drag n drop layout -->
         <div class="w-full">
           <!-- Main -->
+          <editor-layout v-show="!showPriview" v-model="layoutData" />
         </div>
         <!-- 미리보기 -->
         <div>
@@ -51,16 +75,22 @@
 </template>
 
 <script lang="ts">
+import { storeToRefs } from "pinia";
+import { useLayoutStore } from "@/store/layout";
+import { Layer } from "~~/types/layout/interfaces";
+
 export default {
   name: "EditorMain",
   setup() {
-    const pageEnv = reactive({
-      isPreview: false,
-      isShow: false,
-      isEditor: false,
+    const layoutStore = useLayoutStore();
+    const { pageOptions } = storeToRefs(layoutStore);
+    const { layout } = useLayoutSampleData();
+
+    const showPriview = computed(() => {
+      return pageOptions.value.includes("preview");
     });
 
-    return { pageEnv };
+    return { pageOptions, showPriview, layoutData: layout };
   },
 };
 </script>

@@ -16,7 +16,7 @@
     "maz-ui": "^3.0.0",
     "pinia": "^2.0.13",
     "vue-codemirror": "^5.0.1",
-    "vuedraggable": "^2.24.3"
+    "vuedraggable": "^4.1.0"
   },
   "devDependencies": {
     "@pinia/nuxt": "^0.1.8",

@@ -6,11 +6,16 @@ export const useLayoutStore = defineStore({
   state: () => {
     return {
       selectBox: {
+        id: "",
         width: "",
         textAlign: "",
       } as SelectBox,
       pageOptions: [] as string[],
     };
   },
-  actions: {},
+  actions: {
+    setSelectBox(selected: SelectBox) {
+      this.selectBox = selected;
+    },
+  },
 });
