@@ -23,7 +23,7 @@ export const useLayoutSampleData = () => {
         buttonKind: "",
         disabled: false,
       },
-      layerList: [
+      list: [
         {
           name: "Layout",
           id: "201026094728568lma02im21",

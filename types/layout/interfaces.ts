@@ -13,5 +13,5 @@ export declare interface Layer {
   width: string;
   columnSize: string;
   style: BaseStyle;
-  layerList: Layer[];
+  list: Layer[];
 }

@@ -49,7 +49,10 @@ export default {
       },
     },
   },
-  setup() {},
+  setup() {
+    const radioCheck = ref("");
+    return { radioCheck };
+  },
 };
 </script>
 

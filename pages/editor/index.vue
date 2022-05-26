@@ -48,7 +48,7 @@
         <!-- drag n drop layout -->
         <div class="w-full">
           <!-- Main -->
-          <editor-layout v-show="!showPriview" v-model="layoutData" />
+          <editor-layout v-show="!showPriview" :layout-data="layoutData" />
         </div>
         <!-- 미리보기 -->
         <div>

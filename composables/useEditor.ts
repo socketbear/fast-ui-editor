@@ -21,6 +21,6 @@ export const useLayer = (isLayout: boolean) => {
       labelText: "",
       disabled: false,
     },
-    layerList: [],
+    list: [],
   };
 };

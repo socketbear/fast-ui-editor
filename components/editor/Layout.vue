@@ -1,101 +1,112 @@
 <template>
-  <client-only>
-    <draggable
-      :list="layerList"
-      class="list-group"
-      :class="layoutStyle"
-      ghost-class="ghost"
-      group="layout"
-    >
-      <div
-        v-for="(layer, idx) in layerList"
-        :key="layer.id"
-        class="flex flex-wrap"
-        :class="layerStyle[idx]"
-        @click.stop="clickElement(layer)"
+  <div>
+    <client-only>
+      <draggable
+        :list="layerList"
+        class="list-group p-2"
+        :class="layoutStyle"
+        ghost-class="ghost"
+        group="layout"
+        item-key="id"
       >
-        <!-- <div
-          v-if="showId"
-          class="w-full text-xs text-gray-400 text-left break-all"
-        >
-          #{{ layer.id }}
-        </div>
-        <template v-if="layer.type">
-          <editor-layer v-model="layer.layerList" :parent="layer" />
-        </template> -->
-      </div>
-    </draggable>
-  </client-only>
+        <template #item="{ element }">
+          <div class="flex flex-wrap" @click.stop="clickElement(element)">
+            <div
+              v-if="showId"
+              class="w-full text-xs text-gray-400 text-left break-all"
+            >
+              {{ `layer-${element.id}` }}
+            </div>
+            <template
+              v-if="element.type === 'layer' || element.type === 'form'"
+            >
+              <editor-layout :layout-data="element" :parent="layoutData" />
+            </template>
+            <template
+              v-else-if="element.type !== 'layer' && element.type !== 'blank'"
+            >
+              <component
+                :is="`${element.type}`"
+                :component-style="element.style"
+              />
+            </template>
+            <template v-else>
+              <div class="text-sm text-gray-400">{{ element.name }}</div>
+            </template>
+          </div>
+        </template>
+      </draggable>
+    </client-only>
+  </div>
 </template>
 
 <script lang="ts">
 import { PropType } from "vue";
 import { Layer } from "~~/types/layout/interfaces";
 import { useLayoutStore } from "@/store/layout";
+import { storeToRefs } from "pinia";
 import draggable from "vuedraggable";
 
+import Input from "./el/Input";
+import Button from "./el/Button";
+import Checkbox from "./el/Checkbox";
+import Radio from "./el/Radio";
+import Select from "./el/Select";
+import Text from "./el/Text";
+import Textarea from "./el/Textarea";
+
 export default {
-  name: "ComponentEditorLayout",
   components: {
     draggable,
+    Input,
+    Button,
+    Checkbox,
+    Radio,
+    Select,
+    Text,
+    Textarea,
   },
   props: {
     propName: {
       type: String,
       default: () => "",
     },
-    value: {
+    layoutData: {
       type: Object as PropType<Layer>,
       default: () => {
         return useLayer(true);
       },
     },
+    parent: {
+      type: Object,
+    },
   },
   setup(props) {
     const layoutStore = useLayoutStore();
-    const { selectBox, pageOptions, setSelectBox } = layoutStore;
-
-    console.log("layout Data :>> ", props.value);
+    const { setSelectBox } = layoutStore;
+    const { selectBox, pageOptions } = storeToRefs(layoutStore);
 
     let showId = computed(() => {
-      return pageOptions.includes("id");
+      return pageOptions.value.includes("id");
     });
-    const layerList = props.value.layerList;
-
-    let layerStyle = computed(() => {
-      const styles = [];
-      layerList.forEach((layer: Layer) => {
-        const style = {};
-        style["selected-item"] = layer.id === selectBox.id;
-        // 가로 사이즈 지정 여부
-        if (layer.style.width) {
-          style[layer.style.width] = true;
-        } else if (props.value.columnSize) {
-          style[props.value.columnSize] = true;
-        }
-        styles.push(style);
-      });
-      return styles;
-    });
+    const layerList = props.layoutData.list;
 
     let layoutStyle = computed(() => {
-      const styles = [];
       const style = {};
-      style["selected-item"] = props.value.id === selectBox.id;
-      if (props.value.style.width) {
-        style[props.value.style.width] = true;
-      } else if (props.value.columnSize) {
-        style[props.value.columnSize] = true;
+      style["selected-item"] = props.layoutData.id === selectBox.value.id;
+      if (props.layoutData.style.width) {
+        style[props.layoutData.style.width] = true;
+      } else if (props.parent.columnSize) {
+        style[props.parent.columnSize] = true;
       }
-      styles.push(style);
-      return styles;
+      return style;
     });
 
-    const clickElement = (el) => {
-      setSelectBox(el);
+    const clickElement = ({ id, width, textAlign }) => {
+      setSelectBox({ id, width, textAlign });
     };
 
-    return { layerList, layerStyle, layoutStyle, showId, clickElement };
+    return { layerList, layoutStyle, showId, clickElement };
   },
 };
 </script>

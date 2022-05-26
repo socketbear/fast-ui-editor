@@ -40,7 +40,10 @@ export default {
       },
     },
   },
-  setup() {},
+  setup() {
+    const text = ref("");
+    return { text };
+  },
 };
 </script>
 
