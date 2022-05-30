@@ -3,11 +3,11 @@
     <!-- 좌측 영역 -->
     <div class="flex-1 flex flex-col h-full">
       <div class="flex-none flex w-full p-4">
-        <div class="w-1/2 text-left divide-x">
-          <button class="mr-2" size="mini">추가</button>
-          <button class="mr-2" size="mini">복사</button>
-          <button class="mr-2" size="mini">삭제</button>
-          <button class="mr-2" size="mini">DATA 복사</button>
+        <div class="w-1/2">
+          <button class="editor-btn">추가</button>
+          <button class="editor-btn">복사</button>
+          <button class="editor-btn">삭제</button>
+          <button class="editor-btn">DATA 복사</button>
         </div>
         <div class="flex justify-end w-1/2">
           <div class="flex mr-2 items-center">
@@ -56,7 +56,7 @@
           <client-only>
             <div class="flex items-center justify-between my-4">
               <p class="text-xl">HTML Code</p>
-              <button class="ml-2" size="mini">CODE 새로고침</button>
+              <button class="editor-btn">CODE 새로고침</button>
             </div>
             <!-- <vue-codemirror class="w-full codemirror_stype" /> -->
           </client-only>
@@ -95,4 +95,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.editor-btn {
+  @apply mr-4 px-2 text-teal-500 border-2 border-teal-500 rounded-md cursor-pointer hover:bg-teal-500 hover:text-teal-100;
+}
+</style>
