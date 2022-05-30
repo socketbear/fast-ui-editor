@@ -77,7 +77,7 @@
 <script lang="ts">
 import { storeToRefs } from "pinia";
 import { useLayoutStore } from "@/store/layout";
-import { Layer } from "~~/types/layout/interfaces";
+// import { Layer } from "~~/types/layout/interfaces";
 
 export default {
   name: "EditorMain",
@@ -90,7 +90,7 @@ export default {
       return pageOptions.value.includes("preview");
     });
 
-    return { pageOptions, showPriview, layoutData: layout };
+    return { pageOptions, showPriview, layoutData: reactive(layout) };
   },
 };
 </script>

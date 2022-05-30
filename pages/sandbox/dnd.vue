@@ -1,6 +1,6 @@
 <template>
   <draggable
-    v-model="mArr"
+    :v-model="mArr"
     group="people"
     @start="drag = true"
     @end="drag = false"

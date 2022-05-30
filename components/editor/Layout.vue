@@ -7,6 +7,7 @@
     ghost-class="ghost"
     group="layout"
     item-key="id"
+    @change="updateLayoutList"
   >
     <template #item="{ element }">
       <div class="flex flex-wrap" @click.stop="clickElement(element)">
@@ -99,7 +100,11 @@ export default {
       setSelectBox({ id, width, textAlign });
     };
 
-    return { layerList, layoutStyle, showId, clickElement };
+    const updateLayoutList = (...params) => {
+      // console.log(`updateLayoutList, params :>>> `, params);
+    };
+
+    return { layerList, layoutStyle, showId, clickElement, updateLayoutList };
   },
 };
 </script>
