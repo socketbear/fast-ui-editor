@@ -10,9 +10,9 @@ export default defineNuxtConfig({
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/nuxt.png" }],
   },
-  css: ["maz-ui/css/main.css"],
+  css: [],
   build: {
-    transpile: ["maz-ui"], // ⚠️ important ⚠️
+    transpile: ["@heroicons/vue"],
   },
 
   modules: ["nuxt-windicss", "@vueuse/nuxt", "@pinia/nuxt"],

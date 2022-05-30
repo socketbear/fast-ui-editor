@@ -1,43 +1,36 @@
 <template>
-  <div>
-    <client-only>
-      <draggable
-        :list="layerList"
-        class="list-group p-2"
-        :class="layoutStyle"
-        ghost-class="ghost"
-        group="layout"
-        item-key="id"
-      >
-        <template #item="{ element }">
-          <div class="flex flex-wrap" @click.stop="clickElement(element)">
-            <div
-              v-if="showId"
-              class="w-full text-xs text-gray-400 text-left break-all"
-            >
-              {{ `layer-${element.id}` }}
-            </div>
-            <template
-              v-if="element.type === 'layer' || element.type === 'form'"
-            >
-              <editor-layout :layout-data="element" :parent="layoutData" />
-            </template>
-            <template
-              v-else-if="element.type !== 'layer' && element.type !== 'blank'"
-            >
-              <component
-                :is="`${element.type}`"
-                :component-style="element.style"
-              />
-            </template>
-            <template v-else>
-              <div class="text-sm text-gray-400">{{ element.name }}</div>
-            </template>
-          </div>
+  <!-- <client-only> -->
+  <draggable
+    :list="layerList"
+    class="list-group p-2"
+    :class="layoutStyle"
+    ghost-class="ghost"
+    group="layout"
+    item-key="id"
+  >
+    <template #item="{ element }">
+      <div class="flex flex-wrap" @click.stop="clickElement(element)">
+        <div
+          v-if="showId"
+          class="w-full text-xs text-gray-400 text-left break-all"
+        >
+          {{ `layer-${element.id}` }}
+        </div>
+        <template v-if="element.type === 'layer' || element.type === 'form'">
+          <editor-layout :layout-data="element" :parent="layoutData" />
         </template>
-      </draggable>
-    </client-only>
-  </div>
+        <template
+          v-else-if="element.type !== 'layer' && element.type !== 'blank'"
+        >
+          <component :is="`${element.type}`" :component-style="element.style" />
+        </template>
+        <template v-else>
+          <div class="text-sm text-gray-400">{{ element.name }}</div>
+        </template>
+      </div>
+    </template>
+  </draggable>
+  <!-- </client-only> -->
 </template>
 
 <script lang="ts">

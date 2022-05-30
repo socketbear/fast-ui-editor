@@ -401,6 +401,16 @@
     style-mod "^4.0.0"
     w3c-keyname "^2.2.4"
 
+"@headlessui/vue@^1.6.4":
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/@headlessui/vue/-/vue-1.6.4.tgz#8492bbb044a9b19ee92bef9cd4d0c3d8feed8588"
+  integrity sha512-axZMcfRLNuwHESPMgDb0Vj7xxlNPmsPl77pvoRZGzJh7lRdRic9kC/qbVM8G36OpIJRZzqrlADLQ2JIObhQjBg==
+
+"@heroicons/vue@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@heroicons/vue/-/vue-1.0.6.tgz#d8b90734b436eb5a87f40cc300b64a0fb0031f7f"
+  integrity sha512-ng2YcCQrdoQWEFpw+ipFl2rZo8mZ56v0T5+MyfQQvNqfKChwgP6DMloZLW+rl17GEcHkE3H82UTAMKBKZr4+WA==
+
 "@ioredis/commands@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@ioredis/commands/-/commands-1.1.1.tgz#2ba4299ea624a6bfac15b35f6df90b0015691ec3"
@@ -3035,11 +3045,6 @@ make-dir@^3.1.0, make-dir@~3.1.0:
   integrity sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==
   dependencies:
     semver "^6.0.0"
-
-maz-ui@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/maz-ui/-/maz-ui-3.0.0.tgz#e5be1261030f7dbc366f3b86e8bf862c71dc45b5"
-  integrity sha512-4+GZcjj/7Sb4kxkwQxMA6bBgZYDm8dhHpVltRnVuGtQXGr1EbsL5MooKkT/A1s5Qlg6cqIcT8CHVURCq6s/4yQ==
 
 mdn-data@2.0.14:
   version "2.0.14"
