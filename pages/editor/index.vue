@@ -46,19 +46,31 @@
       </div>
       <div class="flex-1 min-h-0 overflow-y-auto p-4">
         <!-- drag n drop layout -->
-        <div class="w-full">
+        <div v-show="!showPriview" class="w-full">
           <!-- Main -->
-          <editor-layout v-show="!showPriview" :layout-data="layoutData" />
+          <editor-layout :layout-data="layoutData" key="layout-editor" />
         </div>
         <!-- 미리보기 -->
-        <div>
+        <div v-show="showPriview" ref="layoutContainer" class="w-full">
           <!-- code layout -->
+          <editor-code-layout
+            :layout-data="layoutData"
+            key="layout-code-preview"
+          />
+        </div>
+        <div>
           <client-only>
             <div class="flex items-center justify-between my-4">
               <p class="text-xl">HTML Code</p>
-              <button class="editor-btn">CODE 새로고침</button>
+              <button class="editor-btn" @click="makeCode">
+                CODE 새로고침
+              </button>
             </div>
-            <!-- <vue-codemirror class="w-full codemirror_stype" /> -->
+            <vue-codemirror
+              v-model="code"
+              class="codemirror"
+              :extensions="extensions"
+            />
           </client-only>
         </div>
       </div>
@@ -78,6 +90,9 @@
 import { storeToRefs } from "pinia";
 import { useLayoutStore } from "@/store/layout";
 // import { Layer } from "~~/types/layout/interfaces";
+import { html } from "@codemirror/lang-html";
+import dedent from "dedent";
+import { get, set } from "@vueuse/core";
 
 export default {
   name: "EditorMain",
@@ -85,12 +100,54 @@ export default {
     const layoutStore = useLayoutStore();
     const { pageOptions } = storeToRefs(layoutStore);
     const { layout } = useLayoutSampleData();
+    const extensions = [html()];
+    const jglib = useJglib();
 
     const showPriview = computed(() => {
       return pageOptions.value.includes("preview");
     });
 
-    return { pageOptions, showPriview, layoutData: reactive(layout) };
+    const layoutContainer = ref(null);
+
+    let code = ref("");
+
+    const makeCode = () => {
+      set(
+        code,
+        jglib.prettyHtml(
+          `<template>
+            ${get(layoutContainer).innerHTML}
+          </template>
+          <script>
+            export default {
+              setup() {
+              }
+            }
+          <\/script>
+
+          <style scoped></style>
+        `
+        )
+      );
+
+      set(code, get(code).replace(/\\/gi, ""));
+      set(code, get(code).replace(/.*<!--.*-->\n/gi, ""));
+    };
+    // const copyToClipboard = () => {
+    //   const clip = JSON.stringify(this.layoutList);
+    //   // const data = [new ClipboardItem({ "text/plain": new Blob([clip], { type: "text/plain" }) })];
+    //   navigator.clipboard.writeText(prettyJs(clip));
+    // };
+
+    return {
+      pageOptions,
+      showPriview,
+      layoutContainer,
+      layoutData: reactive(layout),
+      extensions,
+      code,
+      makeCode,
+    };
   },
 };
 </script>

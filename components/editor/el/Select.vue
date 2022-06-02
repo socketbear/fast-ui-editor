@@ -1,6 +1,5 @@
 <template>
   <div class="flex flex-wrap w-full">
-    <!-- 타이틀 -->
     <div
       v-if="componentStyle.title !== ''"
       class="leading-8 h-8 px-2"

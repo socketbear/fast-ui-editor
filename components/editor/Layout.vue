@@ -1,5 +1,4 @@
 <template>
-  <!-- <client-only> -->
   <draggable
     :list="layerList"
     class="list-group p-2"
@@ -31,7 +30,6 @@
       </div>
     </template>
   </draggable>
-  <!-- </client-only> -->
 </template>
 
 <script lang="ts">
