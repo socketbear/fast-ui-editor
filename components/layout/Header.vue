@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center border-b border-gray-400">
+  <header class="flex items-center border-b border-gray-400">
     <NuxtLink to="/">
       <p class="mx-4 font-bold">Fast UI Editor</p>
     </NuxtLink>
@@ -8,7 +8,7 @@
         Editor
       </p>
     </NuxtLink>
-  </div>
+  </header>
 </template>
 
 <script>

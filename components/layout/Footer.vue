@@ -1,7 +1,7 @@
 <template>
-  <div class="flex items-center justify-center border-t border-gray-400">
+  <footer class="flex items-center justify-center border-t border-gray-400">
     <p class="text-xs text-gray-400">Socketbear.2022</p>
-  </div>
+  </footer>
 </template>
 
 <script>
