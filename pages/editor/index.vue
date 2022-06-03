@@ -46,12 +46,16 @@
       </div>
       <div class="flex-1 min-h-0 overflow-y-auto p-4">
         <!-- drag n drop layout -->
-        <div v-show="!showPriview" class="w-full">
+        <div v-show="!showPriview" class="w-full editor-main">
           <!-- Main -->
           <editor-layout :layout-data="layoutData" key="layout-editor" />
         </div>
         <!-- 미리보기 -->
-        <div v-show="showPriview" ref="layoutContainer" class="w-full">
+        <div
+          v-show="showPriview"
+          ref="layoutContainer"
+          class="w-full editor-main"
+        >
           <!-- code layout -->
           <editor-code-layout
             :layout-data="layoutData"
@@ -155,5 +159,9 @@ export default {
 <style scoped>
 .editor-btn {
   @apply mr-4 px-2 text-teal-500 border-2 border-teal-500 rounded-md cursor-pointer hover:bg-teal-500 hover:text-teal-100;
+}
+
+.editor-main {
+  @apply border-2 border-dark-500;
 }
 </style>

@@ -19,13 +19,8 @@
         <template v-if="element.type === 'layer' || element.type === 'form'">
           <editor-layout :layout-data="element" :parent="layoutData" />
         </template>
-        <template
-          v-else-if="element.type !== 'layer' && element.type !== 'blank'"
-        >
-          <component :is="`${element.type}`" :component-style="element.style" />
-        </template>
         <template v-else>
-          <div class="text-sm text-gray-400">{{ element.name }}</div>
+          <editor-el-element :component-data="element" />
         </template>
       </div>
     </template>
@@ -39,24 +34,9 @@ import { useLayoutStore } from "@/store/layout";
 import { storeToRefs } from "pinia";
 import draggable from "vuedraggable";
 
-import Input from "./el/Input";
-import Button from "./el/Button";
-import Checkbox from "./el/Checkbox";
-import Radio from "./el/Radio";
-import Select from "./el/Select";
-import Text from "./el/Text";
-import Textarea from "./el/Textarea";
-
 export default {
   components: {
     draggable,
-    Input,
-    Button,
-    Checkbox,
-    Radio,
-    Select,
-    Text,
-    Textarea,
   },
   props: {
     propName: {
@@ -85,7 +65,7 @@ export default {
 
     let layoutStyle = computed(() => {
       const style = {};
-      style["selected-item"] = props.layoutData.id === selectBox.value.id;
+      style["selected-layer"] = props.layoutData.id === selectBox.value.id;
       if (props.layoutData.style.width) {
         style[props.layoutData.style.width] = true;
       } else if (props.parent.columnSize) {
@@ -107,4 +87,11 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.list-group {
+  @apply border border-gray-500 border-dashed;
+}
+.selected-layer {
+  @apply border-2 border-emerald-500 border-dashed;
+}
+</style>
