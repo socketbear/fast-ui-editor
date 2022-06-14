@@ -1,7 +1,7 @@
 // import { PrismaClient } from "@prisma/client";
 // const prisma = new PrismaClient();
 
-export default defineEventHandler(async (req) => {
-  console.log("req :>> ", req);
-  return true;
+export default defineEventHandler(async (event) => {
+  const body = await useBody(event);
+  return { body };
 });
