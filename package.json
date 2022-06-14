@@ -12,6 +12,7 @@
     "@codemirror/lang-json": "^0.20.0",
     "@headlessui/vue": "^1.6.4",
     "@heroicons/vue": "^1.0.6",
+    "@prisma/client": "^3.15.1",
     "dayjs": "^1.11.2",
     "dedent": "^0.7.0",
     "js-beautify": "^1.14.3",
@@ -23,6 +24,7 @@
     "@pinia/nuxt": "^0.1.8",
     "@vueuse/nuxt": "^8.3.1",
     "nuxt": "npm:nuxt3@latest",
-    "nuxt-windicss": "^2.3.1"
+    "nuxt-windicss": "^2.3.1",
+    "prisma": "^3.15.1"
   }
 }
