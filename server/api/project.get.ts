@@ -1,12 +1,30 @@
-// import { PrismaClient } from "@prisma/client";
-// const prisma = new PrismaClient();
-// import { usePrisma } from "../utils/prisma";
-// const po = usePrisma();
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+// import {Project} from '@/types/editor/interfaces'
+let callCount: number = 0;
+
+interface Page {
+  _page?: string,
+  _limit?: string
+}
 
 export default defineEventHandler(async (event) => {
-  // return prjs;
-  console.log("count :>> ", event.context.callCount);
+  const {_page, _limit}: Page = useQuery(event)
+  const take = parseInt(_limit ? _limit : '10')
+  const skip = parseInt(_page ? _page : '0') * take
 
-  const projs = await event.context.prisma.project.findMany();
-  return [event.context.callCount, ...projs];
+  // console.log({page, skip, take})
+
+  const [total, projs] = await prisma.$transaction([
+    prisma.project.count(),
+    prisma.project.findMany({
+      skip,
+      take
+    })
+  ])
+  // const projs: Project[] = await prisma.project.findMany();
+  appendHeader(event.res, 'call-count', ++callCount)
+  appendHeader(event.res, 'total', total)
+
+  return projs
 });

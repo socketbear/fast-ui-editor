@@ -29,3 +29,11 @@ export declare interface RadioStyle extends BaseStyle {
 export declare interface SelectStyle extends BaseStyle {
   selectOptionList?: string[];
 }
+
+export declare interface Project {
+  id: number,
+  title: string,
+  content: string,
+  createAt: Date,
+  updateAt: Date
+}

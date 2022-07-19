@@ -15,5 +15,5 @@ model Project {
   title       String   @unique
   content     String
   createAt    DateTime @default(now())
-  updateAt    DateTime @updatedAt
+  updateAt    DateTime? @updatedAt
 }

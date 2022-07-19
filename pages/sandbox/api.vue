@@ -21,7 +21,7 @@ export default {
       // 5 second timeout:
       const timeoutId = setTimeout(() => controller.abort(), 3000)
 
-      const prjs = await $fetch('/api/project', { signal: controller.signal })
+      const prjs = await $fetch('/api/project?_page=0&_limit=10', { signal: controller.signal })
       console.log('prjs :>> ', prjs);
     }
     return { getProjects }
